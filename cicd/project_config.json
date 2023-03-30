@@ -3,12 +3,46 @@
         {
             "id": "project1",
             "name": "project 1",
-            "type": "Java project"
+            "type": "Java project",
+            "components": [
+                {
+                    "name": "backend",
+                    "type": "docker",
+                    "path": "./backend/project1"
+                },
+                {
+                    "network": "network",
+                    "type": "terraform",
+                    "path": "./infra/network/project1"
+                },
+                {
+                    "network": "server",
+                    "type": "terraform",
+                    "path": "./infra/servers/project1"
+                }
+            ]
         },
         {
             "id": "project2",
             "name": "project 2",
-            "type": "Go project"
+            "type": "Go project",
+            "components": [
+                {
+                    "name": "backend",
+                    "type": "docker",
+                    "path": "./backend/project2"
+                },
+                {
+                    "name": "frontend",
+                    "type": "js",
+                    "path": "./frontend/project2"
+                },
+                {
+                    "network": "server",
+                    "type": "terraform",
+                    "path": "./infra/servers/project2"
+                }
+            ]
         }
     ]
 }
