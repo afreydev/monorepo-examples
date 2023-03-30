@@ -1,0 +1,14 @@
+{
+    "projects": [
+        {
+            "id": "project1",
+            "name": "project 1",
+            "type": "Java project"
+        },
+        {
+            "id": "project2",
+            "name": "project 2",
+            "type": "Go project"
+        }
+    ]
+}
