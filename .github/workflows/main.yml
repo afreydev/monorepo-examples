@@ -1,6 +1,6 @@
 name: CICD
 on:
-  pull_request:
+  push:
     branches:
       - search-changes
 jobs:
@@ -12,6 +12,8 @@ jobs:
         working-directory: cicd/tools
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: '2'
       - uses: actions/setup-python@v4
         with:
           python-version: '3.9'

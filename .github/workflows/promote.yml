@@ -1,0 +1,24 @@
+name: promote
+on:
+  workflow_dispatch:
+    inputs:
+      create_release_branch:
+        description: 'Promote to release'
+        required: true
+        default: 'false'
+jobs:
+
+  promote:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: cicd/tools
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: '2'
+      - name: Create release branch
+        run: |
+          DATE_BRANCH=$(date +%Y%m%d-%H%M%S)
+          git checkout -b release-branch-${DATE_BRANCH}
+          git push origin release-branch-${DATE_BRANCH}
