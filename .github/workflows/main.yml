@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - main
-      - release-branch-*
+      - 'release-branch-*'
 jobs:
 
   build-deploy:
