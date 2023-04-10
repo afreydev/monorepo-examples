@@ -2,7 +2,8 @@ name: CICD
 on:
   push:
     branches:
-      - search-changes
+      - main
+      - release-branch-*
 jobs:
 
   build-deploy:
