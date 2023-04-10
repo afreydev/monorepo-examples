@@ -8,8 +8,6 @@ META_FILE_NAME = "meta.json"
 PROJECT_CONFIG_FILENAME = "project_config.json"
 LAST_COMMIT = "HEAD~1"
 
-repo = Repo(REPO_PATH)
-
 def command(args):
     sp = subprocess.run(
         args
@@ -25,13 +23,13 @@ def get_status(repo, path, commit = LAST_COMMIT):
     else:
         return "na"
 
-def search_meta(path):
+def search_meta(repo_path, path):
     meta_file = os.path.join(path, META_FILE_NAME)
     exist_meta = os.path.exists(meta_file)
     if exist_meta:
         return meta_file
     else:
-        if path == REPO_PATH:
+        if path == repo_path:
             return None
         return search_meta(os.path.dirname(path))
 
@@ -41,13 +39,14 @@ def load_json(meta_file):
     return data
 
 def search_updated_projects(repo_path, commit = LAST_COMMIT):
+    repo = Repo(REPO_PATH)
     updated_projects = []
     for item in repo.index.diff(commit):
         status = get_status(repo, item.a_path)
         if status == "modified":
             file_path = os.path.join(repo_path, item.a_path)
             modified_path = os.path.dirname(file_path)
-            meta_file = search_meta(modified_path)
+            meta_file = search_meta(repo_path, modified_path)
             if meta_file is not None:
                 info = load_json(meta_file)
                 updated_projects.append(info["name"])
