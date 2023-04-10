@@ -20,7 +20,7 @@ jobs:
         run: pip install -r requirements.txt
       - name: Config git
         run: |
-        git config --global user.email "afreydev@gmail.com"
-        git config --global user.name "Angel Rey"
+          git config --global user.email "afreydev@gmail.com"
+          git config --global user.name "Angel Rey"
       - name: Run CICD script
         run: python cicd_project.py
