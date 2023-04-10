@@ -12,13 +12,13 @@ jobs:
         working-directory: cicd/tools
     steps:
       - uses: actions/checkout@v3
-        with:
-          set-safe-directory: 'false'
       - uses: actions/setup-python@v4
         with:
           python-version: '3.9'
           cache: 'pip' # caching pip dependencies
       - name: Install dependencies
         run: pip install -r requirements.txt
+      - name: Safe dir
+        run: git config --global --add safe.directory $PWD
       - name: Run CICD script
         run: python cicd_project.py
