@@ -31,7 +31,7 @@ def search_meta(repo_path, path):
     else:
         if path == repo_path:
             return None
-        return search_meta(os.path.dirname(path))
+        return search_meta(repo_path, os.path.dirname(path))
 
 def load_json(meta_file):
     f = open(meta_file)
