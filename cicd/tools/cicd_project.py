@@ -29,6 +29,8 @@ def search_meta(repo_path, path):
     if exist_meta:
         return meta_file
     else:
+        print(repo_path)
+        print(path)
         if path == repo_path:
             return None
         return search_meta(repo_path, os.path.dirname(path))
@@ -74,12 +76,10 @@ args = vars(parser.parse_args())
 commit = args["commit"]
 docker = args["docker"]
 
-REPO_PATH = "/home/runner/work/monorepo-examples/monorepo-examples/"
+REPO_PATH = "/home/runner/work/monorepo-examples/monorepo-examples"
 
 if docker:
     REPO_PATH = "/opt/codebase/monorepo"
-
-
 
 projects = search_updated_projects(REPO_PATH, commit)
 
