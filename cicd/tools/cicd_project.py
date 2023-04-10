@@ -62,10 +62,10 @@ def get_project_config(repo_path, project_id):
     return None
 
 def build_project(project):
-    command(['build.sh', project])
+    command(['bash', 'build.sh', project])
 
 def deploy_project(project):
-    command(['deploy.sh', project])
+    command(['bash', 'deploy.sh', project])
 
 parser = ArgumentParser(formatter_class=ArgumentDefaultsHelpFormatter)
 parser.add_argument("-c", "--commit", help="Commit or branch name", default=LAST_COMMIT)
