@@ -13,4 +13,4 @@ jobs:
         run: |
           DATE_BRANCH=$(date +%Y%m%d-%H%M%S)
           git checkout -b release-branch-${DATE_BRANCH}
-          git push
+          git push origin release-branch-${DATE_BRANCH}
