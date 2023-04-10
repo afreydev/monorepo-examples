@@ -19,6 +19,6 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
       - name: Safe dir
-        run: git config --global --add safe.directory $PWD
+        run: git config --global --add safe.directory /home/runner/work/monorepo-examples/monorepo-examples/
       - name: Run CICD script
         run: python cicd_project.py
