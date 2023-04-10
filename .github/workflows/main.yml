@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - main
-      - 'release-branch-*'
+      - 'release-branch-**'
   workflow_dispatch:
 jobs:
 
