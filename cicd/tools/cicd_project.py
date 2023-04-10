@@ -1,14 +1,14 @@
 import os
 import json
 import subprocess
+from argparse import ArgumentDefaultsHelpFormatter, ArgumentParser
 from git import Repo
 
-
-MAIN_BRANCH = "main"
 REPO_PATH = "/opt/codebase/monorepo"
 CICD_PATH = os.path.join(REPO_PATH, "cicd")
 META_FILE_NAME = "meta.json"
 PROJECT_CONFIG_FILENAME = "project_config.json"
+LAST_COMMIT = "HEAD~1"
 
 repo = Repo(REPO_PATH)
 
@@ -18,8 +18,8 @@ def command(args):
     )
     return sp
 
-def get_status(repo, path):
-    changed = [item.a_path for item in repo.index.diff(MAIN_BRANCH)]
+def get_status(repo, path, commit = LAST_COMMIT):
+    changed = [item.a_path for item in repo.index.diff(commit)]
     if path in repo.untracked_files:
         return "untracked"
     elif path in changed:
@@ -42,9 +42,9 @@ def load_json(meta_file):
     data = json.load(f)
     return data
 
-def search_updated_projects():
+def search_updated_projects(commit = LAST_COMMIT):
     updated_projects = []
-    for item in repo.index.diff(MAIN_BRANCH):
+    for item in repo.index.diff(commit):
         status = get_status(repo, item.a_path)
         if status == "modified":
             file_path = os.path.join(REPO_PATH, item.a_path)
@@ -69,7 +69,12 @@ def build_project(project):
 def deploy_project(project):
     command(['deploy.sh', project])
 
-projects = search_updated_projects()
+parser = ArgumentParser(formatter_class=ArgumentDefaultsHelpFormatter)
+parser.add_argument("-c", "--commit", help="Commit or branch name", default=LAST_COMMIT)
+args = vars(parser.parse_args())
+commit = args["commit"]
+
+projects = search_updated_projects(commit)
 
 for project in projects:
     project_config = get_project_config(project)
