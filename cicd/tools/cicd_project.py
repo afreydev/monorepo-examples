@@ -39,7 +39,7 @@ def load_json(meta_file):
     return data
 
 def search_updated_projects(repo_path, commit = LAST_COMMIT):
-    repo = Repo(REPO_PATH)
+    repo = Repo(repo_path)
     updated_projects = []
     for item in repo.index.diff(commit):
         status = get_status(repo, item.a_path)
