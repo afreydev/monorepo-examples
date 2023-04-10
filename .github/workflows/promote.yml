@@ -1,11 +1,6 @@
 name: promote
 on:
   workflow_dispatch:
-    inputs:
-      create_release_branch:
-        description: 'Promote to release'
-        required: true
-        default: 'false'
 jobs:
 
   promote:
