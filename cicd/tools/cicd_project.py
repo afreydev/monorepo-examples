@@ -74,7 +74,7 @@ args = vars(parser.parse_args())
 commit = args["commit"]
 docker = args["docker"]
 
-REPO_PATH = "../.."
+REPO_PATH = "/home/runner/work/monorepo-examples/monorepo-examples/"
 
 if docker:
     REPO_PATH = "/opt/codebase/monorepo"
