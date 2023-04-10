@@ -29,8 +29,6 @@ def search_meta(repo_path, path):
     if exist_meta:
         return meta_file
     else:
-        print(repo_path)
-        print(path)
         if path == repo_path:
             return None
         return search_meta(repo_path, os.path.dirname(path))
