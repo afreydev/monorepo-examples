@@ -62,10 +62,12 @@ def get_project_config(repo_path, project_id):
     return None
 
 def build_project(project):
-    command(['bash', 'build.sh', project])
+    for component in project["components"]:
+        command(['bash', 'build.sh', project["id"], component])
 
 def deploy_project(project):
-    command(['bash', 'deploy.sh', project])
+    for component in project["components"]:
+        command(['bash', 'deploy.sh', project["id"], component])
 
 parser = ArgumentParser(formatter_class=ArgumentDefaultsHelpFormatter)
 parser.add_argument("-c", "--commit", help="Commit or branch name", default=LAST_COMMIT)
@@ -84,5 +86,5 @@ projects = search_updated_projects(REPO_PATH, commit)
 for project in projects:
     project_config = get_project_config(REPO_PATH, project)
     if project_config is not None:
-        build_project(project_config["id"])
-        deploy_project(project_config["id"])
+        build_project(project_config)
+        deploy_project(project_config)
