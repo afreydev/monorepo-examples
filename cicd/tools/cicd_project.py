@@ -63,12 +63,10 @@ def get_project_config(repo_path, project_id):
 
 def build_project(project):
     for component in project["components"]:
-        print(component)
         command(['bash', 'build.sh', project["id"], component["name"], component["path"]])
 
 def deploy_project(project):
     for component in project["components"]:
-        print(component)
         command(['bash', 'deploy.sh', project["id"], component["name"], component["path"]])
 
 parser = ArgumentParser(formatter_class=ArgumentDefaultsHelpFormatter)
