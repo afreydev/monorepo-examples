@@ -63,11 +63,11 @@ def get_project_config(repo_path, project_id):
 
 def build_project(project):
     for component in project["components"]:
-        command(['bash', 'build.sh', project["id"], component])
+        command(['bash', 'build.sh', project["id"], component["name"], component["path"]])
 
 def deploy_project(project):
     for component in project["components"]:
-        command(['bash', 'deploy.sh', project["id"], component])
+        command(['bash', 'deploy.sh', project["id"], component["name"], component["path"]])
 
 parser = ArgumentParser(formatter_class=ArgumentDefaultsHelpFormatter)
 parser.add_argument("-c", "--commit", help="Commit or branch name", default=LAST_COMMIT)
