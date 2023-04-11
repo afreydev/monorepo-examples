@@ -11,12 +11,12 @@
                     "path": "./backend/project1"
                 },
                 {
-                    "network": "network",
+                    "name": "network",
                     "type": "terraform",
                     "path": "./infra/network/project1"
                 },
                 {
-                    "network": "server",
+                    "name": "server",
                     "type": "terraform",
                     "path": "./infra/servers/project1"
                 }
@@ -38,7 +38,7 @@
                     "path": "./frontend/project2"
                 },
                 {
-                    "network": "server",
+                    "name": "server",
                     "type": "terraform",
                     "path": "./infra/servers/project2"
                 }
